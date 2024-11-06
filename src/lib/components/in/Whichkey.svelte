@@ -58,11 +58,11 @@
 				<div
 					class="mx-auto bg-primary px-4 py-1 text-center text-sm font-black text-primary-foreground"
 				>
-					Which Key?
+					WHICH KEY?
 				</div>
 			</div>
-			<ul>
-				<li>/ for search</li>
+			<ul class="mx-2 my-4">
+				<li>/ for keyword search</li>
 				<li>u to navigate to url</li>
 				<li>b to go to book marks</li>
 			</ul>

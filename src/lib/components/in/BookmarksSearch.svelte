@@ -4,6 +4,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import * as Command from '$lib/components/ui/command/index.js';
 	import { Bookmark as BookmarkIcon } from 'lucide-svelte';
+	import { workBookmarks } from '$lib/constants';
 
 	interface Bookmark {
 		name: string;
@@ -11,18 +12,7 @@
 		url: string;
 	}
 
-	let bookmarks: Bookmark[] = $state([
-		{
-			url: 'https://github.com/',
-			favicon: '',
-			name: 'GitHub'
-		},
-		{
-			url: 'https://google.ca',
-			favicon: '',
-			name: 'Google'
-		}
-	]);
+	let bookmarks: Bookmark[] = $state(workBookmarks);
 
 	let {
 		onOpenChange

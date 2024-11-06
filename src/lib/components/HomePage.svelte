@@ -6,6 +6,7 @@
 />
 
 <script lang="ts">
+	import '../../app.css';
 	import BookmarksSearch from './in/BookmarksSearch.svelte';
 	import UrlSearch from './in/UrlSearch.svelte';
 	import Whichkey from './in/Whichkey.svelte';

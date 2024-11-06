@@ -49,7 +49,7 @@
 			<Command.Root>
 				<Command.Input
 					class="font-bold"
-					placeholder="Type a url ..."
+					placeholder="Type a keyword ..."
 					onkeydown={onEnterPress}
 					bind:value={inputVal}
 				/>
