@@ -20,8 +20,6 @@
 	let hasOpenDialog = $state(false);
 
 	function onkeypress(event: KeyboardEvent) {
-		console.log('keypress, dialog already opened?' + hasOpenDialog);
-
 		switch (event.key) {
 			case ' ':
 				if (!hasOpenDialog) {
@@ -33,49 +31,24 @@
 		}
 		event.stopPropagation();
 	}
-
-	function onDialogOpenChanged(open: boolean) {
-		if (open) {
-			console.log('dialog is open');
-			hasOpenDialog = true;
-		} else {
-			console.log('dialog is close');
-			hasOpenDialog = false;
-		}
-	}
 </script>
 
-<UrlSearch
-	bind:this={urlSearch}
-	onOpenChange={(val: boolean) => {
-		onDialogOpenChanged(val);
-	}}
-/>
-<BookmarksSearch
-	bind:this={bookmarksSearch}
-	onOpenChange={(val: boolean) => {
-		onDialogOpenChanged(val);
-	}}
-/>
-<KeywordSearch
-	bind:this={keywordSearch}
-	onOpenChange={(val: boolean) => {
-		onDialogOpenChanged(val);
-	}}
-/>
+<UrlSearch bind:this={urlSearch} />
+<BookmarksSearch bind:this={bookmarksSearch} />
+<KeywordSearch bind:this={keywordSearch} />
 <Whichkey
 	bind:this={whichKey}
 	onBookmarkSearchSelected={() => {
+		whichKey.close();
 		bookmarksSearch.open();
 	}}
 	onUrlSearchSelected={() => {
+		whichKey.close();
 		urlSearch.open();
 	}}
-	onKeywordSearchSelected={() => {
+	onKeywordSearchSelected={async () => {
+		whichKey.close();
 		keywordSearch.open();
-	}}
-	onOpenChange={(val: boolean) => {
-		onDialogOpenChanged(val);
 	}}
 />
 

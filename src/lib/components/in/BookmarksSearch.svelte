@@ -14,27 +14,14 @@
 
 	let bookmarks: Bookmark[] = $state(workBookmarks);
 
-	let {
-		onOpenChange
-	}: {
-		onOpenChange: (val: boolean) => void;
-	} = $props();
-
 	let isOpen = $state(false);
-
 	let inputVal = $state('');
 
 	export function open() {
-		if (isOpen === false) {
-			isOpen = true;
-			onOpenChange(isOpen);
-		}
+		isOpen = true;
 	}
 	export function close() {
-		if (isOpen === true) {
-			isOpen = false;
-			onOpenChange(isOpen);
-		}
+		isOpen = false;
 	}
 
 	function onEnterPress(event: KeyboardEvent) {
@@ -42,17 +29,16 @@
 			event.preventDefault();
 		}
 
+		if (event.key === 'Escape') {
+			event.preventDefault();
+			close();
+		}
+
 		event.stopPropagation();
 	}
 </script>
 
-<Dialog.Root
-	bind:open={isOpen}
-	onOpenChange={(val: boolean) => {
-		onOpenChange(val);
-		inputVal = '';
-	}}
->
+<Dialog.Root bind:open={isOpen}>
 	<Dialog.Content class="px-4 pb-2 pt-0">
 		<div class="flex flex-col pb-2">
 			<div class="mt-0 flex">
@@ -71,21 +57,19 @@
 				/>
 				<Command.List>
 					<Command.Empty>No results found.</Command.Empty>
-					{#key inputVal}
-						<Command.Group heading="Suggestions">
-							{#each bookmarks as bookmark}
-								<Command.Item
-									value={bookmark.name}
-									onSelect={() => {
-										window.location.href = bookmark.url;
-									}}
-								>
-									<BookmarkIcon class="mr-2 h-4 w-4" />
-									<span>{bookmark.name}</span>
-								</Command.Item>
-							{/each}
-						</Command.Group>
-					{/key}
+					<Command.Group heading="Suggestions">
+						{#each bookmarks as bookmark}
+							<Command.Item
+								value={bookmark.name}
+								onSelect={() => {
+									window.location.href = bookmark.url;
+								}}
+							>
+								<BookmarkIcon class="mr-2 h-4 w-4" />
+								<span>{bookmark.name}</span>
+							</Command.Item>
+						{/each}
+					</Command.Group>
 				</Command.List>
 			</Command.Root>
 		</div>

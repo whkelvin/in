@@ -6,53 +6,51 @@
 	let {
 		onUrlSearchSelected,
 		onBookmarkSearchSelected,
-		onKeywordSearchSelected,
-		onOpenChange
+		onKeywordSearchSelected
 	}: {
 		onUrlSearchSelected: () => void;
 		onBookmarkSearchSelected: () => void;
 		onKeywordSearchSelected: () => void;
-		onOpenChange: (val: boolean) => void;
 	} = $props();
 
 	let isOpen = $state(false);
 
 	export function open() {
-		if (isOpen === false) {
-			isOpen = true;
-			onOpenChange(isOpen);
-		}
+		isOpen = true;
 	}
 	export function close() {
-		if (isOpen === true) {
-			isOpen = false;
-			onOpenChange(isOpen);
-		}
+		isOpen = false;
 	}
 
-	function onSpecialKeyPress(event: KeyboardEvent) {
+	async function onSpecialKeyPress(event: KeyboardEvent) {
 		if (event.key === '/') {
 			isOpen = false;
+			event.preventDefault();
 			event.stopPropagation();
 			onKeywordSearchSelected();
 		}
 
 		if (event.key === 'u') {
 			isOpen = false;
+			event.preventDefault();
 			event.stopPropagation();
 			onUrlSearchSelected();
 		}
 
 		if (event.key === 'b') {
 			isOpen = false;
+			event.preventDefault();
 			event.stopPropagation();
 			onBookmarkSearchSelected();
 		}
 	}
 </script>
 
-<Dialog.Root bind:open={isOpen} {onOpenChange}>
-	<Dialog.Content class="border-none  px-4 pb-2 pt-0 outline-none" onkeypress={onSpecialKeyPress}>
+<Dialog.Root bind:open={isOpen}>
+	<Dialog.Content
+		class="border-none px-4 pb-2 pt-0 outline-none"
+		onkeypresscapture={onSpecialKeyPress}
+	>
 		<div class="flex flex-col pb-2">
 			<div class="mt-0 flex">
 				<div
