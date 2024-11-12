@@ -33,9 +33,24 @@
 	}
 </script>
 
-<UrlSearch bind:this={urlSearch} />
-<BookmarksSearch bind:this={bookmarksSearch} />
-<KeywordSearch bind:this={keywordSearch} />
+<UrlSearch
+	bind:this={urlSearch}
+	onOpenChange={(val) => {
+		hasOpenDialog = val;
+	}}
+/>
+<BookmarksSearch
+	bind:this={bookmarksSearch}
+	onOpenChange={(val) => {
+		hasOpenDialog = val;
+	}}
+/>
+<KeywordSearch
+	bind:this={keywordSearch}
+	onOpenChange={(val) => {
+		hasOpenDialog = val;
+	}}
+/>
 <Whichkey
 	bind:this={whichKey}
 	onBookmarkSearchSelected={() => {

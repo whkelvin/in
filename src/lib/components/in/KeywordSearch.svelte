@@ -7,10 +7,18 @@
 
 	export function open() {
 		isOpen = true;
+		onOpenChange(isOpen);
 	}
 	export function close() {
 		isOpen = false;
+		onOpenChange(isOpen);
 	}
+
+	let {
+		onOpenChange
+	}: {
+		onOpenChange: (val: boolean) => void;
+	} = $props();
 
 	function onKeyDown(event: KeyboardEvent) {
 		if (event.key === 'Enter') {

@@ -12,6 +12,12 @@
 		url: string;
 	}
 
+	let {
+		onOpenChange
+	}: {
+		onOpenChange: (val: boolean) => void;
+	} = $props();
+
 	let bookmarks: Bookmark[] = $state(workBookmarks);
 
 	let isOpen = $state(false);
@@ -19,9 +25,11 @@
 
 	export function open() {
 		isOpen = true;
+		onOpenChange(isOpen);
 	}
 	export function close() {
 		isOpen = false;
+		onOpenChange(isOpen);
 	}
 
 	function onEnterPress(event: KeyboardEvent) {
@@ -33,8 +41,6 @@
 			event.preventDefault();
 			close();
 		}
-
-		event.stopPropagation();
 	}
 </script>
 

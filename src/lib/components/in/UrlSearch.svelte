@@ -2,15 +2,24 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import * as Command from '$lib/components/ui/command/index.js';
 
+	let {
+		onOpenChange
+	}: {
+		onOpenChange: (val: boolean) => void;
+	} = $props();
+
 	let isOpen = $state(false);
 
 	let inputVal = $state('');
 
 	export function open() {
 		isOpen = true;
+		onOpenChange(isOpen);
 	}
+
 	export function close() {
 		isOpen = false;
+		onOpenChange(isOpen);
 	}
 
 	function onEnterPress(event: KeyboardEvent) {
