@@ -29,7 +29,7 @@
 			default:
 				break;
 		}
-		event.stopPropagation();
+		//event.stopPropagation();
 	}
 </script>
 

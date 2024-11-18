@@ -50,4 +50,15 @@ export const workBookmarks: Bookmark[] = [
     "https://sv70.ifastnet.com:2083/cpsess8060342479/frontend/jupiter/softaculous/index.live.php?act=wordpress",
   ),
   bm("Classifii", "https://classifii.com"),
+  bm(
+    "Figma",
+    "https://www.figma.com/design/q117SVTDDDuA37C8BgtFgJ/Kelendy?node-id=0-1&node-type=canvas&t=fF4Ju0SqRABYIjrt-0",
+  ),
+  bm(
+    "Shadcn",
+    "https://next.shadcn-svelte.com",
+  ),
+  bm("Lucide", "https://lucide.dev/icons/"),
+  bm("Calendar", "https://calendar.google.com/calendar/u/0/r"),
+  bm("Messenger", "https://www.messenger.com/e2ee/t/8778745138839838/"),
 ];
