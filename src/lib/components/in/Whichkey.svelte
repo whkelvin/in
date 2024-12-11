@@ -6,11 +6,13 @@
 	let {
 		onUrlSearchSelected,
 		onBookmarkSearchSelected,
-		onKeywordSearchSelected
+		onKeywordSearchSelected,
+		onImportBookmarkSelected
 	}: {
 		onUrlSearchSelected: () => void;
 		onBookmarkSearchSelected: () => void;
 		onKeywordSearchSelected: () => void;
+		onImportBookmarkSelected: () => void;
 	} = $props();
 
 	let isOpen = $state(false);
@@ -43,6 +45,13 @@
 			event.stopPropagation();
 			onBookmarkSearchSelected();
 		}
+
+		if (event.key === 'c') {
+			isOpen = false;
+			event.preventDefault();
+			event.stopPropagation();
+			onImportBookmarkSelected();
+		}
 	}
 </script>
 
@@ -62,7 +71,8 @@
 			<ul class="mx-2 my-4">
 				<li>/ for keyword search</li>
 				<li>u to navigate to url</li>
-				<li>b to go to book marks</li>
+				<li>b to search book marks</li>
+				<li>c to go to import book marks</li>
 			</ul>
 		</div>
 	</Dialog.Content>

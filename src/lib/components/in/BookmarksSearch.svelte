@@ -4,21 +4,14 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import * as Command from '$lib/components/ui/command/index.js';
 	import { Bookmark as BookmarkIcon } from 'lucide-svelte';
-	import { workBookmarks } from '$lib/constants';
-
-	interface Bookmark {
-		name: string;
-		favicon: string;
-		url: string;
-	}
+	//import { workBookmarks } from '$lib/constants';
+	import { bookmarks } from '$lib/state';
 
 	let {
 		onOpenChange
 	}: {
 		onOpenChange: (val: boolean) => void;
 	} = $props();
-
-	let bookmarks: Bookmark[] = $state(workBookmarks);
 
 	let isOpen = $state(false);
 	let inputVal = $state('');
@@ -64,7 +57,7 @@
 				<Command.List>
 					<Command.Empty>No results found.</Command.Empty>
 					<Command.Group heading="Suggestions">
-						{#each bookmarks as bookmark}
+						{#each $bookmarks as bookmark}
 							<Command.Item
 								value={bookmark.name}
 								onSelect={() => {
